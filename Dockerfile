@@ -1,9 +1,9 @@
-FROM gradle:jdk17 AS builder
+FROM gradle:7.6-jdk17 AS builder
 WORKDIR /app
 COPY . .
 RUN gradle bootJar --no-daemon
 
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
 COPY --from=builder /app/build/libs/*-1.jar app.jar
 EXPOSE 8080
