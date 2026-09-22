@@ -1,9 +1,9 @@
-FROM gradle:8.5-jdk17 AS builder
+FROM gradle:8-jdk21 AS builder
 WORKDIR /app
 COPY . .
 RUN gradle bootJar --no-daemon -x test
 
-FROM eclipse-temurin:17-jre-jammy
+FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 COPY --from=builder /app/build/libs/*-1.jar app.jar
 EXPOSE 8080
