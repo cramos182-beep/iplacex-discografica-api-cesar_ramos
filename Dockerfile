@@ -1,7 +1,7 @@
-FROM gradle:7.6-jdk17 AS builder
+FROM gradle:8.5-jdk17 AS builder
 WORKDIR /app
 COPY . .
-RUN gradle bootJar --no-daemon
+RUN gradle bootJar --no-daemon -x test
 
 FROM eclipse-temurin:17-jre-jammy
 WORKDIR /app
